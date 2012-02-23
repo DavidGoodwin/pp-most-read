@@ -1,0 +1,44 @@
+pp-most-read
+------------
+
+Random 'Questions':
+------------------
+Q. What is it? 
+A 'simple' wordpress plugin designed for recording which is the most popular page on a blog.
+
+Q. How is is different from 101 plugins which also do this ?
+A. It should record hits which are the result of the end user viewing a static cached page 
+(e.g. via varnish or something like WPSuperCache or w3tc Total Cache).
+A. It should perform vaguely well under load - namely :
+ * each page hit does not result in a database update/write - hits are batched up over a 
+   period of time and flushed in one go.
+A. It only logs hits by 'real' browsers - or at least those with JS enabled.
+
+
+The plugin requires you have caching turned on - we developed it with w3tc total cache; we
+assume you'll be using memcached as a caching backend - and therefore there will be minimal I/O 
+
+There is a wp-admin settings option to control the duration of this cache period.
+
+Installation:
+-------------
+
+0. This assumes Wordpress v3.3ish. The plugin should be compatible with PHP5.2 and above.
+
+1. Put/copy the pp-most-read folder into wp-content/plugins/
+
+2. Activate the plugin within the wp-admin control panel.
+
+3. Include <?php echo ppmr_mostread(); ?> within your sidebar or where ever you want the 'top 10 list' to be.
+
+Thanks to:
+----------
+http://wordpress.org/extend/plugins/most-read-posts-in-xx-days/ for some inspiration
+
+Original Author:
+---------------
+Steven Meyer <steven@palepurple.co.uk>
+
+Licence:
+-------
+GPL v2 or greater.
